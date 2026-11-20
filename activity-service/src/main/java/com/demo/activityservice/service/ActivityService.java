@@ -1,6 +1,6 @@
 package com.demo.activityservice.service;
 
-import com.demo.activityservice.ActivityRepository;
+import com.demo.activityservice.repository.ActivityRepository;
 import com.demo.activityservice.dto.ActivityResponse;
 import com.demo.activityservice.dto.ActivityRequest;
 import com.demo.activityservice.model.Activity;
