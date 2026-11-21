@@ -1,16 +1,14 @@
 package com.demo.userservice.dto;
 
-import lombok.Data;
-
 import java.time.LocalDateTime;
 
-@Data
-public class UserResponse {
-    private String id;
-    private String email;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+public record UserResponse(
+    String id,
+    String email,
+    String password,
+    String firstName,
+    String lastName,
+    LocalDateTime createdAt,
+    LocalDateTime updateAt
+) {
 }

@@ -1,20 +1,19 @@
 package com.demo.activityservice.dto;
 
 import com.demo.activityservice.model.ActivityType;
-import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Data
-public class ActivityResponse {
-    private String id;
-    private String userId;
-    private ActivityType type;
-    private Integer duration;
-    private Integer caloriesBurned;
-    private LocalDateTime startTime;
-    private Map<String, Object> additionalMetrics;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+public record ActivityResponse(
+    String id,
+    String userId,
+    ActivityType type,
+    Integer duration,
+    Integer caloriesBurned,
+    LocalDateTime startTime,
+    Map<String, Object> additionalMetrics,
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt
+) {
 }
