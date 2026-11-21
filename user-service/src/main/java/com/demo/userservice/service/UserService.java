@@ -16,14 +16,14 @@ public class UserService {
         if (repository.existsByEmail(request.email())) {
             throw new RuntimeException("Email already exists");
         }
-        User user = new User();
+        final var user = new User();
         user.setEmail(request.email());
         user.setPassword(request.password());
         user.setFirstName(request.firstName());
         user.setLastName(request.lastName());
 
         // Persist the user in the database
-        User savedUser = repository.save(user);
+        final var savedUser = repository.save(user);
 
         return new UserResponse(
             savedUser.getId(),

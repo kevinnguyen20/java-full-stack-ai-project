@@ -24,7 +24,7 @@ public class ActivityService {
     }
 
     public ActivityResponse trackActivity(ActivityRequest request){
-        Activity activity = new Activity();
+        final var activity = new Activity();
         activity.setUserId(request.userId());
         activity.setType(request.type());
         activity.setDuration(request.duration());
@@ -32,7 +32,7 @@ public class ActivityService {
         activity.setStartTime(request.startTime());
         activity.setAdditionalMetrics(request.additionalMetrics());
 
-        Activity savedActivity = activityRepository.save(activity);
+        final var savedActivity = activityRepository.save(activity);
 
         return mapToResponse(savedActivity);
     }
@@ -52,8 +52,7 @@ public class ActivityService {
     }
 
     public List<ActivityResponse> getUserActivities(String userId) {
-        List<Activity> activities = activityRepository.findByUserId(userId);
-        return activities.stream()
+        return activityRepository.findByUserId(userId).stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }
