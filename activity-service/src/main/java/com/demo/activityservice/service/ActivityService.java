@@ -4,7 +4,6 @@ import com.demo.activityservice.repository.ActivityRepository;
 import com.demo.activityservice.dto.ActivityResponse;
 import com.demo.activityservice.dto.ActivityRequest;
 import com.demo.activityservice.model.Activity;
-import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -12,20 +11,26 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service@RequiredArgsConstructor
+@Service
 public class ActivityService {
     private final ActivityRepository activityRepository;
     private final Environment environment;
     private final MongoTemplate mongoTemplate;
+
+    public ActivityService(ActivityRepository activityRepository, Environment environment, MongoTemplate mongoTemplate) {
+        this.activityRepository = activityRepository;
+        this.environment = environment;
+        this.mongoTemplate = mongoTemplate;
+    }
+
     public ActivityResponse trackActivity(ActivityRequest request){
-        Activity activity = Activity.builder()
-                .userId(request.userId())
-                .type(request.type())
-                .duration(request.duration())
-                .caloriesBurned(request.caloriesBurned())
-                .startTime(request.startTime())
-                .additionalMetrics(request.additionalMetrics())
-                .build();
+        Activity activity = new Activity();
+        activity.setUserId(request.userId());
+        activity.setType(request.type());
+        activity.setDuration(request.duration());
+        activity.setCaloriesBurned(request.caloriesBurned());
+        activity.setStartTime(request.startTime());
+        activity.setAdditionalMetrics(request.additionalMetrics());
 
         Activity savedActivity = activityRepository.save(activity);
 
