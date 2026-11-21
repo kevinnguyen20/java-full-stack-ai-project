@@ -37,7 +37,7 @@ public class UserService {
     }
 
     public UserResponse getUserProfile(String userId) {
-        User user = repository.findById(userId)
+        final var user = repository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return new UserResponse(
